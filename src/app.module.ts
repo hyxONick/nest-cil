@@ -1,5 +1,4 @@
 import { LoggerModule } from './logger/logger.module';
-import { ItemsModule } from './items/items.module';
 import { DeviceTypeModule } from './deviceType/deviceType.module';
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
@@ -9,7 +8,6 @@ import configuration from './config/configuration';
 @Module({
   imports: [
     LoggerModule,
-    ItemsModule,
     DeviceTypeModule,
     ConfigModule.forRoot({
       isGlobal: true,
