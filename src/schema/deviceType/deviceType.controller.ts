@@ -19,7 +19,7 @@ import { DeviceTypeDto } from './dto/deviceType.dto';
 import { DeviceTypeService } from './deviceType.service';
 import { DeviceType } from './interfaces/deviceType.interface';
 import { LoggerService } from 'src/logger/logger.service';
-import { ValidationPipe } from'../pipe/validation.pipe';
+import { ValidationPipe } from '../../pipe/validation.pipe';
 
 @Controller('deviceType')
 @ApiTags('deviceType')
@@ -30,14 +30,14 @@ export class DeviceTypeController {
   ) {}
 
   @Get('/queryAll')
-  @ApiOperation({ summary: '查找所有设备类型' })
+  @ApiOperation({ summary: 'Query all deviceType' })
   async findAll(): Promise<DeviceType[]> {
     this.logger.debug('Get All Items Endpoint');
     return this.deviceTypeService.findAll();
   }
 
   @Get('queryOne/:id')
-  @ApiOperation({ summary: '根据ID查找设备类型' })
+  @ApiOperation({ summary: 'Query deviceType by id' })
   // @ApiQuery({ name: 'limit', required: true })
   async findById(@Param() param): Promise<DeviceType> {
     return this.deviceTypeService.findById(param.id);
@@ -45,18 +45,18 @@ export class DeviceTypeController {
 
   @UsePipes(new ValidationPipe()) // 使用管道验证
   @Post('/create')
-  @ApiOperation({ summary: '创建设备类型', description: '创建设备类型' })
-  async create(@Body() itemDTO: DeviceTypeDto): Promise<DeviceType> {
+  @ApiOperation({ summary: 'create deviceType', description: 'create deviceType' })
+  async create(@Body() DeviceTypeDto: DeviceTypeDto): Promise<DeviceType> {
 
-    return this.deviceTypeService.create(itemDTO);
+    return this.deviceTypeService.create(DeviceTypeDto);
   }
 
   @Put('update/:_id')
-  @ApiOperation({ summary: '更新设备类型' })
-  @ApiBody({ type: DeviceTypeDto, description: '参数可选' })
+  @ApiOperation({ summary: 'update deviceType' })
+  @ApiBody({ type: DeviceTypeDto, description: 'flexible param' })
   @ApiResponse({
     status: 200,
-    description: '成功返回200，失败返回400',
+    description: 'success => 200，fail => 400',
     type: DeviceTypeDto,
   })
   async update(@Param() param, @Body() DeviceTypeDto: DeviceTypeDto): Promise<DeviceType> {
@@ -64,7 +64,7 @@ export class DeviceTypeController {
   }
 
   @Delete('delete/:id')
-  @ApiOperation({ summary: '删除设备类型' })
+  @ApiOperation({ summary: 'delete user by id' })
   async delete(@Param() param): Promise<DeviceType> {
     return this.deviceTypeService.delete(param.id);
   }

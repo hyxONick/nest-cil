@@ -1,12 +1,14 @@
 import { LoggerModule } from './logger/logger.module';
-import { DeviceTypeModule } from './deviceType/deviceType.module';
+import { DeviceTypeModule } from './schema/deviceType/deviceType.module';
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import configuration from './config/configuration';
+import {schemaModule} from "./schema.module";
 
 @Module({
   imports: [
+    schemaModule,
     LoggerModule,
     DeviceTypeModule,
     ConfigModule.forRoot({
