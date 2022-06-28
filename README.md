@@ -6,6 +6,14 @@ Basic example of a Rest API using [Nest](https://github.com/nestjs/nest) framewo
 
 ## Installation
 
+if you have no yarn dependencies, please install it.
+
+```bash
+$ npm install yarn -g
+```
+
+else you can directly use yarn to install other dependencies.
+
 ```bash
 $ yarn
 ```
