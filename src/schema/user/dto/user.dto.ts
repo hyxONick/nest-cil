@@ -28,4 +28,9 @@ export class UserDto {
   @ApiProperty({ example: 'it is some remark', description: 'remark' })
   readonly remarks: string;
 
+  @ApiProperty({ example: 'edf2388fds6232jks', description: 'token' })
+  readonly token: string;
+
+  @ApiProperty({ example: '2022-07-04 14:00:22', description: 'lastUpdatedTime' })
+  readonly lastUpdatedTime: string;
 }

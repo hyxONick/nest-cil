@@ -26,6 +26,12 @@ export class User extends Document {
 
   @Prop({ type: String, required: false })
   remarks: string;
+
+  @Prop({ type: String, required: false })
+  token: string;
+
+  @Prop({ type: String, required: true })
+  lastUpdatedTime: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

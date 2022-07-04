@@ -19,7 +19,7 @@ export class ValidationPipe implements PipeTransform {
       LoggerService.error(`Validation failed: ${msg}`);
       throw new BadRequestException(`Validation failed: ${msg}`);
     }
-    LoggerService.debug(`Validation value: ${value}`);
+    LoggerService.debug(`Validation value: ${JSON.stringify(value)}`);
     return value;
   }
 
