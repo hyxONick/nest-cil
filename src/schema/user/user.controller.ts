@@ -20,6 +20,7 @@ import { UserService } from './user.service';
 import { User } from './interfaces/user.interface';
 import { LoggerService } from 'src/logger/logger.service';
 import { ValidationPipe } from '../../pipe/validation.pipe';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Controller('user')
 @ApiTags('user')
