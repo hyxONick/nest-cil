@@ -1,12 +1,5 @@
 export interface User {
+  id: string;
   name: string;
-  tel: string;
   email?: string;
-  employeeNumber?: string;
-  isAdmin?: boolean;
-  dept?: string;
-  position?: string;
-  remarks?: string;
-  token?: string;
-  lastUpdatedTime: string;
 }
