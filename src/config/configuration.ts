@@ -1,8 +1,14 @@
 export default () => ({
   // port: 27017,
   port: 3000,
-  database: {
-    // url: `mongodb://${process.env.DB_HOST_D}:${process.env.DB_PORT_D}/${process.env.DB_NAME_D}`,
-    // uri: `${process.env.DB_NAME_D}`,
+  databaseConfig: {
+    type: 'mysql',
+    host: 'localhost',
+    port: 3306,
+    username: 'root',
+    password: 'root',
+    database: 'shopping_day',
+    entities: ["dist/**/*.entity{.ts,.js}"],
+    synchronize: true
   },
 });

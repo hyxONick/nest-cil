@@ -1,16 +1,23 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
 import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
 
 
 @Entity()
 export class User {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @Column()
+  @Column({ nullable: false })
   name: string;
 
-  @Column()
+  @Column({ nullable: false })
   email: string;
+
+  @Column({ nullable: true })
+  password: string;
+
+  @Column({ nullable: true })
+  token: string;
+
+  @Column({ nullable: true })
+  role: string;
 }

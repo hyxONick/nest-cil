@@ -13,7 +13,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       isGlobal: true,
       load: [configuration],
     }),
-    TypeOrmModule.forRoot()
+    TypeOrmModule.forRootAsync({
+      useFactory: (configService: ConfigService) => configService.get('databaseConfig'),
+      inject: [ConfigService],
+    }),
   ],
   controllers: [],
   providers: [],

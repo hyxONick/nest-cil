@@ -34,7 +34,17 @@ export class UserController {
   @ApiOperation({ summary: 'Query all users' })
   async findAll(): Promise<User[]> {
     this.logger.debug('Get All Items Endpoint');
-    return this.UserService.findAll();
+    const userList = (await this.UserService.findAll() || []).map(user => {
+      return {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        role: user.role
+      }
+    });
+    this.logger.debug('### userList ###', JSON.stringify(userList))
+    // return this.UserService.findAll();
+    return userList;
   }
 
   @Get('queryOne/:id')

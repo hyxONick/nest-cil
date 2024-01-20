@@ -1,4 +1,4 @@
-import { IsNotEmpty, MinLength, MaxLength } from 'class-validator';
+import { IsNotEmpty, MinLength, MaxLength, IsOptional  } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class UserDto {
@@ -13,4 +13,15 @@ export class UserDto {
   @ApiProperty({ example: 'hyx840767429@gmil.com', description: 'email' })
   readonly email: string;
 
+  @ApiProperty({ example: 'hashed_password', description: 'password' })
+  @IsOptional()
+  readonly password: string;
+
+  @ApiProperty({ example: 'some_token', description: 'token' })
+  @IsOptional()
+  readonly token: string;
+
+  @ApiProperty({ example: 'admin', description: 'role' })
+  @IsOptional()
+  readonly role: string;
 }
