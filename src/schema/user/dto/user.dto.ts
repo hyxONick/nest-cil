@@ -3,8 +3,8 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export class UserDto {
   @ApiProperty({ example: 'abcd001', description: 'id' })
-  @IsNotEmpty({ message: "id shouldn't empty"  })
-  readonly id: string;
+  @IsOptional()
+  readonly id?: string;
 
   @ApiProperty({ example: 'Nick', description: 'name' })
   @IsNotEmpty({ message: "name shouldn't empty"  })
@@ -24,4 +24,8 @@ export class UserDto {
   @ApiProperty({ example: 'admin', description: 'role' })
   @IsOptional()
   readonly role: string;
+
+  @ApiProperty({ example: true, description: 'isDeleted' })
+  @IsOptional()
+  readonly isDeleted?: boolean;
 }

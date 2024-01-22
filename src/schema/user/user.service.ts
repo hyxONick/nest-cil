@@ -12,11 +12,11 @@ export class UserService {
   ) {}
 
   async findAll(): Promise<User[]> {
-    return this.userRepository.find();
+    return this.userRepository.find({ where: { isDeleted: false } });
   }
 
   async findById(id: string): Promise<User> {
-    const user = await this.userRepository.findOne({ where: { id } });
+    const user = await this.userRepository.findOne({ where: { id, isDeleted: false } });
 
     if (!user) {
       throw new NotFoundException(`User with ID ${id} not found`);
@@ -25,12 +25,12 @@ export class UserService {
     return user;
   }
 
-  async create(newUser: User): Promise<User> {
+  async create(newUser: UserDto): Promise<User> {
     const createdUser = this.userRepository.create(newUser);
     return this.userRepository.save(createdUser);
   }
 
-  async update(id: string, updatedUser: User): Promise<User> {
+  async update(id: string, updatedUser: UserDto): Promise<User> {
     const existingUser = await this.findById(id);
 
     // Update the existing user's properties
@@ -43,7 +43,8 @@ export class UserService {
     const existingUser = await this.findById(id);
 
     if (existingUser) {
-      await this.userRepository.remove(existingUser);
+      existingUser.isDeleted = true;
+      await this.userRepository.save(existingUser);
       return existingUser;
     } else {
       return null;

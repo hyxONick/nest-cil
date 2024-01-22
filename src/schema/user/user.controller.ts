@@ -1,11 +1,9 @@
 import {
   Body,
   Controller,
-  Delete,
   Get,
   Param,
   Post,
-  Put,
   UsePipes
 } from '@nestjs/common';
 import {
@@ -34,13 +32,14 @@ export class UserController {
   @ApiOperation({ summary: 'Query all users' })
   async findAll(): Promise<User[]> {
     this.logger.debug('Get All Items Endpoint');
-    const userList = (await this.UserService.findAll() || []).map(user => {
-      return {
-        id: user.id,
-        name: user.name,
-        email: user.email,
-        role: user.role
-      }
+    const userList: { id: string; name: string; email: string; role: string }[] =
+        (await this.UserService.findAll() || []).map((user: User) => {
+          return {
+            id: user.id,
+            name: user.name,
+            email: user.email,
+            role: user.role
+          }
     });
     this.logger.debug('### userList ###', JSON.stringify(userList))
     // return this.UserService.findAll();
@@ -62,7 +61,7 @@ export class UserController {
     return this.UserService.create(UserDto);
   }
 
-  @Put('update/:_id')
+  @Post('update/:id')
   @ApiOperation({ summary: 'update account' })
   @ApiBody({ type: UserDto, description: 'flexible param' })
   @ApiResponse({
@@ -74,7 +73,7 @@ export class UserController {
     return this.UserService.update(param.id, UserDto);
   }
 
-  @Delete('delete/:id')
+  @Post('delete/:id')
   @ApiOperation({ summary: 'delete user by id' })
   async delete(@Param() param): Promise<User> {
     return this.UserService.delete(param.id);
