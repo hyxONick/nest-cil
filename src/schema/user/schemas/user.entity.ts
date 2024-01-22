@@ -28,7 +28,7 @@ export class User {
   @Column({ nullable: true })
   role: string;
 
-  @Column({ default: false })  // 添加 isDeleted 属性，并设置默认值为 false
+  @Column({ default: false })
   @Index()
   isDeleted: boolean;
 }

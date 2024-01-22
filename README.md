@@ -31,6 +31,10 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
+## Checking API Doc
+# Swagger
+- [API Doc_Link](http://localhost:3000/doc/#/)
+
 ## Stay in touch
 
 - Author - [Nick Hua](https://github.com/hyxONick)

@@ -28,7 +28,7 @@ export class Product {
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   updateTime: Date;
 
-  @Column({ default: false })  // 添加 isDeleted 属性，并设置默认值为 false
+  @Column({ default: false })
   @Index()
   isDeleted: boolean;
 }
