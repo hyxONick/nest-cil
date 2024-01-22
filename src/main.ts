@@ -8,11 +8,11 @@ async function bootstrap() {
   const configService: ConfigService = app.get(ConfigService);
 
   const swaggerOptions = new DocumentBuilder()
-      .setTitle('ez-DeviceLib-文档')  //文档标题
-      .setDescription('DeviceLib-api-说明')  //文档描述
-      .setVersion('1.0')  //文档版本
-      .addBasicAuth() //鉴权，可以输入token
-      .build(); //创建
+      .setTitle('api')
+      .setDescription('api description')
+      .setVersion('1.0')
+      .addBasicAuth() //auth，can input token
+      .build();
 
   //创建swagger
   const document = SwaggerModule.createDocument(app, swaggerOptions);
